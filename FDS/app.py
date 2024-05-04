@@ -8,6 +8,7 @@ import pickle
 
 model = pickle.load(open('model.pkl', 'rb'))
 encoder = pickle.load(open('encoder.pkl', 'rb')) 
+le_an = pickle.load(open('anencoder.pkl','rb'))
 scaler =  pickle.load(open('scaler.pkl','rb'))
 cols=['age','workclass','education','marital-status','occupation','relationship','race','gender','capital-gain','capital-loss',
       'hours-per-week','native-country']    
@@ -35,7 +36,7 @@ def main():
         print(data)
         df=pd.DataFrame([list(data.values())], columns=['AnimalName','symptoms1','symptoms2','symptoms3','symptoms4','symptoms5'])
         
-
+        
         le = LabelEncoder()
         for col in range(0,6):
             if df[df.columns[col]].dtype=='object':
@@ -44,7 +45,7 @@ def main():
         
 
         X= df
-
+        st.write(X)
         scaler = StandardScaler()
 
         X = scaler.fit_transform(X)
